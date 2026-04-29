@@ -42,9 +42,9 @@ class GRU(nn.Module):
 
 class PhysicsInformedRNN(nn.Module):
     """Physics-Informed RNN"""
-    def __init__(self, input_size, hidden_size, num_layers, output_size, omega_init=2*np.pi/365, dropout=0.1):
+    def __init__(self, input_size, hidden_size, num_layers, output_size, omega_init=2*np.pi/365):
         super(PhysicsInformedRNN, self).__init__()
-        self.rnn = nn.RNN(input_size, hidden_size, num_layers, batch_first=True,dropout=dropout)
+        self.rnn = nn.RNN(input_size, hidden_size, num_layers, batch_first=True)
         self.fc = nn.Linear(hidden_size, output_size)
         self.omega = nn.Parameter(torch.tensor(omega_init))
 
@@ -88,9 +88,9 @@ class PhysicsInformedLSTM(nn.Module):
 
 class PhysicsInformedGRU(nn.Module):
     """Physics-Informed GRU"""
-    def __init__(self, input_size, hidden_size, num_layers, output_size, omega_init=2*np.pi/365, dropout=0.1):
+    def __init__(self, input_size, hidden_size, num_layers, output_size, omega_init=2*np.pi/365):
         super(PhysicsInformedGRU, self).__init__()
-        self.gru = nn.GRU(input_size, hidden_size, num_layers, batch_first=True,dropout=dropout)
+        self.gru = nn.GRU(input_size, hidden_size, num_layers, batch_first=True)
         self.fc = nn.Linear(hidden_size, output_size)
         self.omega = nn.Parameter(torch.tensor(omega_init))
 
