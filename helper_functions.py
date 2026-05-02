@@ -83,7 +83,7 @@ def train_models(models, X_train, y_train, X_val, y_val,
             if hasattr(model, "omega"):
                 model.omega = nn.Parameter(torch.tensor(omega, dtype=torch.float32, device=model.omega.device))
             criterion = nn.MSELoss()
-            optimizer = optim.Adam(model.parameters(), lr=0.01)
+            optimizer = optim.Adam(model.parameters(), lr=lr)
 
             total_losses = []
             val_total_losses = []
@@ -128,7 +128,7 @@ def train_models(models, X_train, y_train, X_val, y_val,
         else:
             print(f"Training Standard Model: {name}")
             criterion = nn.MSELoss()
-            optimizer = optim.Adam(model.parameters(), lr=0.01)
+            optimizer = optim.Adam(model.parameters(), lr=lr)
 
             losses = []
             val_losses = []
